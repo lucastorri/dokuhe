@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: page-deployment
+  labels:
+    app: PageDeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: PageService
+  template:
+    metadata:
+      labels:
+        app: PageService
+    spec:
+      containers:
+      - name: page-service
+        image: 'page-service'
+        imagePullPolicy: Never  # allows using the local registry
+        envFrom:
+        - configMapRef:
+            name: page-config
+        ports:
+        - containerPort: 80

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: HelloDeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: HelloService
+  template:
+    metadata:
+      labels:
+        app: HelloService
+    spec:
+      containers:
+      - name: hello-service
+        image: 'hello-service'
+        imagePullPolicy: Never  # allows using the local registry
+        envFrom:
+        - configMapRef:
+            name: hello-config
+        ports:
+        - containerPort: 80

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /page
+        backend:
+          serviceName: page-service
+          servicePort: 80
+      - path: /hello
+        backend:
+          serviceName: hello-service
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: hello-page-service
+          servicePort: 80
