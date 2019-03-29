@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hello-page-config
-data:
-  HELLO_SERVICE_URL: 'http://hello-service'
-  PAGES_SERVICE_URL: 'http://page-service'

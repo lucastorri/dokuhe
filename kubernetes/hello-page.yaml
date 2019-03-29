@@ -1,5 +1,17 @@
-apiVersion: apps/v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-page-service
+spec:
+  selector:
+    app: HelloPageService
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 7000
+---
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: hello-page-deployment
   labels:
@@ -23,3 +35,11 @@ spec:
             name: hello-page-config
         ports:
         - containerPort: 80
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hello-page-config
+data:
+  HELLO_SERVICE_URL: 'http://hello-service'
+  PAGES_SERVICE_URL: 'http://page-service'

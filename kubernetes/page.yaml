@@ -1,5 +1,17 @@
-apiVersion: apps/v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: page-service
+spec:
+  selector:
+    app: PageService
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9000
+---
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: page-deployment
   labels:
@@ -23,3 +35,10 @@ spec:
             name: page-config
         ports:
         - containerPort: 80
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: page-config
+data:
+  LANG: 'en'
