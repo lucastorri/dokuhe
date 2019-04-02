@@ -1,4 +1,11 @@
 
+## Minikube
+
+```bash
+minikube start --vm-driver=hyperkit
+
+minikube dashboard
+```
 
 ## Run Using Docker
 
