@@ -1,0 +1,6 @@
+target:
+  service: ''
+  port: 80
+
+in:
+  path: '/'

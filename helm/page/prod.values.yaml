@@ -1,0 +1,5 @@
+service:
+  replicas: 3
+
+config:
+  lang: 'en'

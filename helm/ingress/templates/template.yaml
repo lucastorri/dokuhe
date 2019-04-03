@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Chart.Name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.in.path }}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: {{ .Values.in.path }}
+        backend:
+          serviceName: {{ .Values.target.service }}
+          servicePort: {{ .Values.target.port }}

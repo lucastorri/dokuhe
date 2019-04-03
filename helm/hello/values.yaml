@@ -1,0 +1,16 @@
+image:
+  repository: hello-service
+  tag: latest
+  pullPolicy: Never
+  port: 8000
+
+service:
+  port: 80
+  replicas: 1
+
+config:
+  salutation: ''
+
+custom:
+  serviceName: ''
+  releaseName: ''

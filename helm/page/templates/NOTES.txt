@@ -1,0 +1,4 @@
+Your release is named {{ .Release.Name }}. To learn more about it, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get {{ .Release.Name }}

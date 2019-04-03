@@ -1,0 +1,16 @@
+image:
+  repository: page-service
+  tag: latest
+  pullPolicy: Never
+  port: 9000
+
+service:
+  port: 80
+  replicas: 1
+
+config:
+  lang: ''
+
+custom:
+  serviceName: ''
+  releaseName: ''

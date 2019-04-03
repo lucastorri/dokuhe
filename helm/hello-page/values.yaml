@@ -1,0 +1,17 @@
+image:
+  repository: hello-page-service
+  tag: latest
+  pullPolicy: Never
+  port: 7000
+
+service:
+  port: 80
+  replicas: 1
+
+config:
+  helloServiceUrl: ''
+  pageServiceUrl: ''
+
+custom:
+  serviceName: ''
+  releaseName: ''
