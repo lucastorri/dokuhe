@@ -34,7 +34,7 @@ spec:
         - configMapRef:
             name: page-config
         ports:
-        - containerPort: 80
+        - containerPort: 9000
 ---
 kind: ConfigMap
 apiVersion: v1

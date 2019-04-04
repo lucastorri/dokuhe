@@ -46,7 +46,7 @@ spec:
         - configMapRef:
             name: '{{ .Release.Name }}-config'
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: {{ .Values.image.port }}
 ---
 kind: ConfigMap
 apiVersion: v1
