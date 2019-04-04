@@ -1,10 +1,11 @@
+{{- define "common.test.connection" -}}
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "service.releaseName" . }}-test-connection"
+  name: "{{ include "common.releaseName" . }}-test-connection"
   labels:
-    app.kubernetes.io/name: {{ include "service.name" . }}
-    helm.sh/chart: {{ include "service.chart" . }}
+    app.kubernetes.io/name: {{ include "common.name" . }}
+    helm.sh/chart: {{ include "common.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   annotations:
@@ -14,5 +15,6 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "service.releaseName" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "common.releaseName" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
+{{- end -}}

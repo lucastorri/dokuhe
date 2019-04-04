@@ -10,7 +10,7 @@ service:
 
 config:
   helloServiceUrl: ''
-  pageServiceUrl: ''
+  pagesServiceUrl: ''
 
 custom:
   serviceName: ''

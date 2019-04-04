@@ -62,7 +62,7 @@ helmut() {
     args+=(upgrade "$service" "$service" --dry-run --install --debug --force)
     ;;
   "deploy")
-    args+=(upgrade "$service" "$service" --install --atomic)
+    args+=(upgrade "$service" "$service" --install --atomic --force)
     ;;
   "purge-all")
     helm list --output json | jq '.Releases[] | .Name' -r | xargs helm delete --purge
@@ -78,6 +78,7 @@ helmut() {
     args+=(-f "$service/$env.values.yaml")
   fi
 
+  helm dependency update "$service" --skip-refresh
   "${args[@]}" "$@"
 }
 
@@ -89,10 +90,14 @@ helmut deploy page:dev \
 
 helmut deploy hello-page:dev \
   --set config.helloServiceUrl='http://hello' \
-  --set config.pageServiceUrl='http://page'
+  --set config.pagesServiceUrl='http://page'
 
 helmut deploy ingress \
   --set target.service='hello-page'
+
+# call the service (must wait for the ingress to be ready)
+ingress_address=`kubectl get ingress -o json | jq -r .items[0].status.loadBalancer.ingress[0].ip`
+curl -k "https://$ingress_address/"
 
 helmut purge-all
 ```
@@ -111,3 +116,5 @@ kubectl run -it --image=busybox --rm busybox -- sh
 - [Kubernetes NodePort vs LoadBalancer vs Ingress? When should I use what?](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 - [Helm Chart Hooks](https://github.com/helm/helm/blob/master/docs/charts_hooks.md)
 - [Kubernetes Debug Services](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/)
+- [Helm Common Template Example)](https://github.com/CodeJjang/helm-microservices-example)
+- [Functions Available on Helm Templates](https://github.com/Masterminds/sprig/tree/master/docs)
