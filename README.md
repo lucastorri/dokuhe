@@ -102,10 +102,7 @@ helmut purge-all
 ### Debug Pod
 
 ```bash
-kubectl apply -f tools/busybox.yaml
- # nslookup, wget, ...
-kubectl exec -ti busybox -- sh
-kubectl delete -f tools/busybox.yaml
+kubectl run -it --image=busybox --rm busybox -- sh
 ```
 
 ## References
