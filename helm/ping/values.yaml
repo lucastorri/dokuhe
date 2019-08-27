@@ -1,0 +1,12 @@
+image:
+  repository: nginxdemos/hello
+  tag: latest
+  port: 80
+
+service:
+  port: 80
+  replicas: 1
+
+custom:
+  serviceName: ''
+  releaseName: ''
