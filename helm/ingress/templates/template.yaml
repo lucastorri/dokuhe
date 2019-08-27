@@ -4,6 +4,7 @@ metadata:
   name: {{ .Chart.Name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.in.path }}
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - http:
