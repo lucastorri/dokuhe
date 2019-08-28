@@ -9,6 +9,7 @@ minikube dashboard
 ## Run Using Docker
 
 ```bash
+eval $(minikube docker-env) # to use minikube's docker registry
 ./docker-build-all.sh
 
 docker run -it -e LANG=en -p 9000:9000 page-service
